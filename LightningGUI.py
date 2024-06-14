@@ -2,7 +2,7 @@ __author__ = "Liam Plybon (blablabliam.github.io)"
 __copyright__ = "Copyright 2022, Liam Plybon"
 __credits__ = ["Saulius Lukse", "Drake Anthony (Styropyro)", "Stephen C Hummel"]
 __license__ = "MIT"
-__version__ = "2"
+__version__ = "2.0.1"
 __maintainer__ = "Liam Plybon"
 __email__ = "lplybon1@gmail.com"
 __status__ = "Prototype"
@@ -318,7 +318,7 @@ class Window(QMainWindow):
 
     def setupUi(self):
         # sets up the gui layout itself
-        self.setWindowTitle("ZapCapture")
+        self.setWindowTitle("ZapCapture V" + __version__ + "")
         self.resize(300, 150)
         self.centralWidget = QWidget()
         self.setCentralWidget(self.centralWidget)
