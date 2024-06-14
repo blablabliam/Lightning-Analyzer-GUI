@@ -55,6 +55,10 @@ global output_folder
 output_folder = 'No Folder Chosen'
 global threshold
 threshold = '5000000'
+global autoThreshold
+autoThreshold = '1.5'
+global autoThresholdEnabled
+autoThresholdEnabled = True
 # buttonstate determines output file name type.
 global buttonState
 buttonState = True
@@ -147,7 +151,7 @@ class Worker(QObject):
             return
         # create frame and gif directories after checking for existence
         impath = os.path.join(out_folder, 'frames/')
-        gifpath = os.path.join(out_folder, 'gifs/')
+        gifpath = os.path.join(out_folder, 'mp4/')
         if not os.path.isdir(impath):
             os.mkdir(impath)
         if not os.path.isdir(gifpath):
@@ -344,6 +348,12 @@ class Window(QMainWindow):
         self.outputTimestampButton.setChecked(False)
         self.outputTimestampButton.toggled.connect(
             lambda: self.btnstate(self.outputTimestampButton))
+        # automatic threshold button, on by default for ease of use
+        self.autoThresholdButton = QPushButton("Automatic Threshold (❓)")
+        self.autoThresholdButton.setCheckable(True)
+        self.autoThresholdButton.setChecked(True)
+        self.autoThresholdButton.setToolTip('Automatic Threshold uses a >' + autoThreshold + ' standard deviation threshold to automatically detect lightning frames. Autothresh can make the process take somewhat longer, but is fast and easy to use. Button turns red when disabled, and the feature is enabled by default.')
+        self.autoThresholdButton.clicked.connect(self.changeAutothreshSetting)
         # threshold widget
         self.thresholdLabel = QLabel("Threshold (❓)", self)
         self.thresholdLabel.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
@@ -374,6 +384,7 @@ class Window(QMainWindow):
         layout.addWidget(self.outputFilenameLabel)
         layout.addWidget(self.outputFrameNumButton)
         layout.addWidget(self.outputTimestampButton)
+        layout.addWidget(self.autoThresholdButton)
         layout.addWidget(self.thresholdLabel)
         layout.addWidget(self.thresholdEntry)
         layout.addWidget(self.analysisButton)
@@ -410,6 +421,24 @@ class Window(QMainWindow):
             else:
                 buttonState = False
                 print(b.text()+" is deselected")
+
+
+    def changeAutothreshSetting(self):
+        # Causes the autothresh button to change color, and enables/disables autothresh in the algorithm.
+        # Yes, I know this has a double negative. It clearly only bothers you. 
+        global autoThresholdEnabled
+        if self.autoThresholdButton.isChecked() == False:
+            autoThresholdEnabled = False
+            print("autoThresholdEnabled = " + str(autoThresholdEnabled))
+            # setting background color to red indicating disabled
+            self.autoThresholdButton.setStyleSheet("background-color : red")
+ 
+        # if it is unchecked
+        else:
+            autoThresholdEnabled = True
+            print("autoThresholdEnabled = " + str(autoThresholdEnabled))
+            # set background color back to normal
+            self.autoThresholdButton.setStyleSheet("background-color : rgb(53, 53, 53)")
 
     def runLongTask(self):
         # set the threshold

@@ -74,21 +74,24 @@ Now I have tested the program with hours upon hours of footage, detecting lightn
 
 #### V2.0.1
 * Bug Fixing
- * Fixed Linux Crash Bug ✔️
- * Verified Windows 11 Functionality ✔️
+  * Fixed Linux Crash Bug ✔️
+  * Verified Windows 11 Functionality ✔️
+  * Changed 'gifs' folder into 'mp4' folder, since I switched from gifs to mp4.
+* Quality of Life Features
+  * Added version name to window title ✔️
 
 #### V2.0.0 ✔️
 * Quality of Life Features & Bug Testing
- * requirements.txt ✔️
- * Graphics overhaul for less ugly interface ✔️
- * Multi-threading for faster processing ✔️
- * Progress bar ✔️
- * Error handling to give feedback during analysis ✔️
- * Saved file frame/timestamp option ✔️
- * Detection dead-zone ✔️
- * MP4 output mode for cool multi-frame lightning ✔️
- * Fix crash after analysis ✔️
- * Windows Installation ✔️
+  * requirements.txt ✔️
+  * Graphics overhaul for less ugly interface ✔️
+  * Multi-threading for faster processing ✔️
+  * Progress bar ✔️
+  * Error handling to give feedback during analysis ✔️
+  * Saved file frame/timestamp option ✔️
+  * Detection dead-zone ✔️
+  * MP4 output mode for cool multi-frame lightning ✔️
+  * Fix crash after analysis ✔️
+  * Windows Installation ✔️
 
 #### V1 ✔️
 * Implement a working GUI that is OS independent. ✔️
@@ -99,19 +102,22 @@ Now I have tested the program with hours upon hours of footage, detecting lightn
 #### Future Features and QOL Improvements
 These features may or may not be written in the future, depending on interest in the program and my ability to keep working on it.
 * [Red Sprite](https://en.wikipedia.org/wiki/Sprite_(lightning)) mode.
- * I have acquired some test footage (thanks to Stephen C Hummel for submitting extensive footage!) for this feature, so this is the next anticipated feature. It will specifically detect and extract red sprites, useful for research and photography. Currently, ZapCapture WILL detect sprites, but only when also detecting lightning. This fills up the output file list and is only marginally better than going through the video manually.
+  * I have acquired some test footage (thanks to Stephen C Hummel for submitting extensive footage!) for this feature, so this is the next anticipated feature. It will specifically detect and extract red sprites, useful for research and photography. Currently, ZapCapture WILL detect sprites, but only when also detecting lightning. This fills up the output file list and is only marginally better than going through the video manually.
 * Automatic Threshold Setting
- * Analyze a short section of video, automatically determine an appropriate threshold, and apply to the video. Repeat for each video, to prevent unique video settings like time of day from affecting the result. This will cause analysis to take longer, but it should improve the user experience and result in more accurate detection given a variety of videos.
+  * Analyze a short section of video, automatically determine an appropriate threshold, and apply to the video. Repeat for each video, to prevent unique video settings like time of day from affecting the result. This will cause analysis to take longer, but it should improve the user experience and result in more accurate detection given a variety of videos.
 * Live View During Processing
- * Having a live view of the video, or at least a way to see the gif outputs, would improve user feedback during processing. At the moment, if the progress bar is moving slowly, there is no way to tell if ZapCapture has frozen or is working. Seeing images and gifs populate a field would fix this lack of feedback, and give a fast sense of the image quality/strike frequency while running.
+  * Having a live view of the video, or at least a way to see the gif outputs, would improve user feedback during processing. At the moment, if the progress bar is moving slowly, there is no way to tell if ZapCapture has frozen or is working. Seeing images and gifs populate a field would fix this lack of feedback, and give a fast sense of the image quality/strike frequency while running.
 * Frame Name Starting with Score
- * Easily sort the frames in a directory by quality, to easily find the best frames. Also, add the frame number to the CSV that is generated to make it more easily sortable. 
+  * Easily sort the frames in a directory by quality, to easily find the best frames. Also, add the frame number to the CSV that is generated to make it more easily sortable. 
 * Extracted Frame Counter + Graph of Frames and Quality
- * This would allow users to see at what point quality tapers off, and get an idea for if the threshold is set too high or low. 
+  * This would allow users to see at what point quality tapers off, and get an idea for if the threshold is set too high or low. 
 * Current File Name 
- * Write the name of the file being analyzed currently inside the loading bar. Will help with knowing what the program is actually working on at a given time. 
+  * Write the name of the file being analyzed currently inside the loading bar. Will help with knowing what the program is actually working on at a given time. 
 * Terminal Output
- * Enableable function to see the logging output of the program while it runs. 
+  * Enableable function to see the logging output of the program while it runs. 
+<!-- * Retain Metadata
+* Keeping the same date and time, GPS coords, ect with the frame and video output would be a nice addition. 
+* ^this turned out to be a bad idea. It would have made the program way chunkier, and the benefit was negligible. -->
 
 
 <!-- DESIGN DESCRIPTION -->
