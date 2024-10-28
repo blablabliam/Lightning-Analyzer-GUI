@@ -76,7 +76,8 @@ Now I have tested the program with hours upon hours of footage, detecting lightn
 * Bug Fixing
   * Fixed Linux Crash Bug ✔️
   * Verified Windows 11 Functionality ✔️
-  * Changed 'gifs' folder into 'mp4' folder, since I switched from gifs to mp4.
+  * Changed 'gifs' folder into 'mp4' folder, since I switched from gifs to mp4. ✔️
+  * Workaround for streaming formats. ✔️
 * Quality of Life Features
   * Added version name to window title ✔️
 
@@ -123,7 +124,9 @@ These features may or may not be written in the future, depending on interest in
 <!-- DESIGN DESCRIPTION -->
 ## Design
 
-ZapCapture takes a folder full of videos and uses OpenCV to detect differences between footage frames. If the difference exceeds a user-defined threshold, then the image is saved as a PNG. You can tune the detection threshold to suit your individual video; on a ten minute video, ZapCapture can extract less than a hundred frames or several thousand, depending on the threshold. Sequences of frames will also be saved as gif files, so that you can watch strikes happen in slow-motion.
+ZapCapture takes a folder full of videos and uses OpenCV to detect differences between footage frames. If the difference exceeds a user-defined threshold, then the image is saved as along with a short video so you can watch lightning strike in slow motion. You can tune the detection threshold to suit your individual video; on a ten minute video, ZapCapture can extract less than a hundred frames or several thousand, depending on the threshold. 
+
+Be aware that stream files are not supported. If you are working with streamed data formats like .h264, you need to convert files to .mp4 first. 
 
 <p align="center">
   <img src="images/LightningAnalyzerGUI.png" alt="GUI design">
@@ -162,7 +165,7 @@ Download the assets folder and LightningGUI file, and store them in the same pla
 #### Processing
 
 1. Use the input and output folder buttons to select a folder with lightning videos and an empty folder.
-2. Set an appropriate threshold for your videos. The higher the threshold, the faster the process will run and the less output images you will get. You will have to experiment to find the best threshold, but starting high and going lower is the best approach. The default threshold is too high for almost any detections to occur, so you will need to delete a 0 or two for the best results. If you are having trouble, check the csv outputs and pick a threshold value that is higher than the typical detection value.
+2. Set an appropriate threshold for your videos. The higher the threshold, the faster the process will run and the less output images you will get. You will have to experiment to find the best threshold, but starting high and going lower is the best approach. The default threshold is too high for almost any detections to occur, so you will need to delete a 0 or two for the best results. If you are having trouble, check the output csv, sort the threshold values in decending order, and pick a threshold value that is slightly lower than the highest detection value.
 3. Select a file name convention- frame number or timestamp (seconds-milliseconds format).
 4. Finally, click 'Analyze!' and wait a bit. The program will take a few minutes to run. Once analysis is finished, your output folder will contain all of the image and mp4 files, as well as a csv giving threshold data for each frame on every file.
 
@@ -204,8 +207,10 @@ Like it enough to spend money? Don't feel pressured.
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgments
 
-* [Saulius Lukse](https://lukse.lt/uzrasai/2015-05-lightning-strikes-and-python/)
-* Astronomer Stephen C Hummel
+* Inspiration [Saulius Lukse](https://lukse.lt/uzrasai/2015-05-lightning-strikes-and-python/)
+* Data Provider Styropyro
+* Data Provider Stephen C Hummel
+* Bug Reporter Manel Colldecarrera
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

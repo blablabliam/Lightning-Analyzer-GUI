@@ -1,12 +1,12 @@
 __author__ = "Liam Plybon (blablabliam.github.io)"
 __copyright__ = "Copyright 2022, Liam Plybon"
-__credits__ = ["Saulius Lukse", "Drake Anthony (Styropyro)", "Stephen C Hummel"]
+__credits__ = ["Saulius Lukse", "Drake Anthony (Styropyro)", "Stephen C Hummel, Manel Colldecarrera"]
 __license__ = "MIT"
 __version__ = "2.0.1"
 __maintainer__ = "Liam Plybon"
 __email__ = "lplybon1@gmail.com"
 __status__ = "Prototype"
-__date__ = "6-16-2022"
+__date__ = "10-27-2024"
 
 import sys
 #import time
@@ -187,7 +187,7 @@ class Worker(QObject):
             width = (int)(video.get(cv2.CAP_PROP_FRAME_WIDTH))
             height = (int)(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
             fps = (int)(video.get(cv2.CAP_PROP_FPS))
-            #print('FPS is '+ str(fps))
+            # print('FPS is '+ str(fps))
             # video diagnostics printout for user ease.
             # Might incorporate into visible log at later date
             frame_size = "Frame size: " + str(width) + str(height) + '\n'
@@ -199,7 +199,18 @@ class Worker(QObject):
             # checks if input is an actual video before opening csv.
             # opens csv for statistics- might want to disable for production.
             if fps == 0 or nframes == 1:
-                print('zerofps or image!')
+                print(video_fps)
+                print(total_frames)
+                print('zerofps, not enough frames or image!')
+                # can't put in an error popup because it would throw for every kind of file that isn't a video. 
+                # error_popup('Error: file [' + filename + '] has too few frames, zero fps, or is an unsupported filetype.')
+                continue
+            if nframes < -1:
+                print(total_frames)
+                # error found with streaming codecs, where negative frame numbers can be returned. This error will handle those.
+                print('nframes is less than -1. Check filetype!')
+                # error_popup('Error: file [' + filename + '] has less than 0 frames, and is likely an unsupported filetype.')
+                # commented out error popup because it would throw on pngs, and was really annoying.
                 continue
             fff = open(f_out+".csv", 'w')
             # reads the video out to give a frame and flag
